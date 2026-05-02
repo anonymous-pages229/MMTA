@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MMTR - Multimodal Temporal Reasoning Benchmark</title>
+  <meta name="description" content="MMTR: Benchmarking Multimodal Temporal Reasoning with Visual Evidence" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar" id="top">
+    <a class="brand" href="#top">MMTR</a>
+    <nav aria-label="Main navigation">
+      <a href="#abstract">Abstract</a>
+      <a href="#image-examples">Image Evidence</a>
+      <a href="#video-examples">Video Evidence</a>
+      <a href="#data-sources">Data Sources</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="venue">NeurIPS Submission</p>
+        <h1>MMTR: Benchmarking Multimodal Temporal Reasoning with Visual Evidence</h1>
+        <p class="authors">Anonymous Authors</p>
+        <div class="link-row" aria-label="Project links">
+          <a href="#">Paper</a>
+          <a href="#">Code</a>
+          <a href="#">Dataset</a>
+        </div>
+      </div>
+
+      <div class="hero-media" aria-label="Representative visual evidence">
+        <figure class="hero-panel hero-panel-large">
+          <img src="assets/images/sp500.png" alt="Candlestick chart for a financial forecasting example" />
+          <figcaption>Financial chart + price series</figcaption>
+        </figure>
+        <figure class="hero-panel">
+          <img src="assets/posters/agibot.jpg" alt="Robot manipulation video frame" />
+          <figcaption>Robot video + sensor traces</figcaption>
+        </figure>
+        <figure class="hero-panel">
+          <img src="assets/images/terra_satellite.png" alt="Satellite map tile for a geospatial forecasting example" />
+          <figcaption>Geospatial imagery + climate series</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="abstract">
+      <div class="section-head">
+        <p class="eyebrow">Paper Abstract</p>
+        <h2>Abstract</h2>
+      </div>
+      <div class="abstract-placeholder" aria-label="Abstract placeholder">
+        <p>To be added.</p>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="overview">
+      <div class="section-head">
+        <p class="eyebrow">Benchmark Scope</p>
+        <h2>Multimodal Temporal Reasoning With Visual Evidence</h2>
+        <p class="lead">
+          MMTR collects tasks where temporal signals must be interpreted together with visual evidence:
+          static images, radiology images, financial charts, geospatial maps, egocentric videos,
+          robot videos, driving videos, and industrial multi-camera recordings.
+        </p>
+      </div>
+      <div class="metric-grid" aria-label="Benchmark modalities">
+        <div class="metric"><strong>4</strong><span>image-grounded domains</span></div>
+        <div class="metric"><strong>5</strong><span>video-grounded domains</span></div>
+        <div class="metric"><strong>2</strong><span>task families: forecasting and classification</span></div>
+        <div class="metric"><strong>9</strong><span>representative examples below</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="image-examples">
+      <div class="section-head">
+        <p class="eyebrow">Static Visual Evidence</p>
+        <h2>Image and Chart Grounded Tasks</h2>
+        <p class="lead">Each example pairs visual context with an aligned time series and a concrete target output.</p>
+      </div>
+
+      <div class="sample-grid image-grid">
+        <article class="sample-card">
+          <div class="media-frame image-wide">
+            <img src="assets/images/pixelrec.jpg" alt="PixelRec video cover featuring a mountain biking scene" />
+          </div>
+          <div class="sample-body">
+            <p class="dataset">PixelRec</p>
+            <h3>Cover-aware interaction forecasting</h3>
+            <p class="sample-text">
+              Given an item cover, title metadata, and daily interaction counts, forecast the next six daily values.
+            </p>
+            <dl class="task-list">
+              <div><dt>Sample</dt><dd>pixelrec_test200_6_0c20bebda4</dd></div>
+              <div><dt>Context</dt><dd>Sports Mix item: "Best of GoPro POV 2021" style mountain biking content.</dd></div>
+              <div><dt>Target</dt><dd>Predict 2022-03-10 to 2022-03-15 interaction counts.</dd></div>
+              <div><dt>Reference</dt><dd>3, 5, 18, 5, 1, 1</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#d35244" data-series="1,14,22,13,16,8,4,4,1,2,4,2,3,3,4,3,12,4,4,6,21,7,4" aria-label="Historical PixelRec interactions"></canvas>
+          </div>
+        </article>
+
+        <article class="sample-card">
+          <div class="media-frame xray-grid">
+            <img src="assets/images/mimic_disch_1.jpg" alt="First MIMIC chest X-ray image" />
+            <img src="assets/images/mimic_disch_2.jpg" alt="Second MIMIC chest X-ray image" />
+          </div>
+          <div class="sample-body">
+            <p class="dataset">MIMIC</p>
+            <h3>Clinical outcome classification</h3>
+            <p class="sample-text">
+              Use chest X-ray images, a radiology report, and vital signs from a lookback window to answer a discharge question.
+            </p>
+            <dl class="task-list">
+              <div><dt>Sample</dt><dd>mimic_disch_test_2_f93aee762d</dd></div>
+              <div><dt>Question</dt><dd>Will the patient be discharged within the next 48 hours after the anchor time?</dd></div>
+              <div><dt>Options</dt><dd>A. Yes. B. No.</dd></div>
+              <div><dt>Reference</dt><dd>A</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#2a7a78" data-series="67,68,69,70,70,69,69,70,71,71,71,72" aria-label="MIMIC heart-rate trend"></canvas>
+          </div>
+        </article>
+
+        <article class="sample-card">
+          <div class="media-frame image-wide">
+            <img src="assets/images/sp500.png" alt="S&amp;P 500 stock candlestick chart for AA in 2024 H1" />
+          </div>
+          <div class="sample-body">
+            <p class="dataset">S&amp;P 500</p>
+            <h3>Financial forecasting with chart evidence</h3>
+            <p class="sample-text">
+              Forecast future prices from a candlestick image, recent news summaries, and historical close values.
+            </p>
+            <dl class="task-list">
+              <div><dt>Sample</dt><dd>sp500_test200_1_acfbf19108</dd></div>
+              <div><dt>Asset</dt><dd>AA, 2024 H1 historical chart.</dd></div>
+              <div><dt>Target</dt><dd>Forecast 12 trading days from 2024-07-01 to 2024-07-17.</dd></div>
+              <div><dt>Reference</dt><dd>Starts at 39.35 and ends at 36.48.</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#6f5fb7" data-series="32.82,31.02,30.67,31.65,31.26,29.58,27.46,26.35,29.32,30.16,26.44,27.49,25.47,27.90,29.53,30.22,33.41,36.76,35.13,37.23,39.71,43.70,44.15,39.43" aria-label="S&amp;P 500 historical price trend"></canvas>
+          </div>
+        </article>
+
+        <article class="sample-card sample-card-wide">
+          <div class="terra-strip" aria-label="Terra geospatial evidence images">
+            <figure><img src="assets/images/terra_satellite.png" alt="Terra satellite image for 10N 166E" /><figcaption>Satellite</figcaption></figure>
+            <figure><img src="assets/images/terra_relief.png" alt="Terra relief image for 10N 166E" /><figcaption>Relief</figcaption></figure>
+            <figure><img src="assets/images/terra_mask.png" alt="Terra land water mask for 10N 166E" /><figcaption>Mask</figcaption></figure>
+            <figure><img src="assets/images/terra_vgg.png" alt="Terra vertical gravity gradient image for 10N 166E" /><figcaption>VGG</figcaption></figure>
+            <figure><img src="assets/images/terra_faa.png" alt="Terra free air anomaly image for 10N 166E" /><figcaption>FAA</figcaption></figure>
+            <figure><img src="assets/images/terra_ma.png" alt="Terra magnetic anomaly image for 10N 166E" /><figcaption>MA</figcaption></figure>
+            <figure><img src="assets/images/terra_geoid.png" alt="Terra geoid image for 10N 166E" /><figcaption>Geoid</figcaption></figure>
+          </div>
+          <div class="sample-body">
+            <p class="dataset">Terra</p>
+            <h3>Geospatial multivariate forecasting</h3>
+            <p class="sample-text">
+              Forecast climate variables for a 1 degree by 1 degree grid cell using static geophysical layers and 100 days of multivariate history.
+            </p>
+            <dl class="task-list">
+              <div><dt>Sample</dt><dd>terra_test200_1_1ccbc81d48</dd></div>
+              <div><dt>Grid</dt><dd>10N_166E, Pacific Ocean cell.</dd></div>
+              <div><dt>Variables</dt><dd>lwd, precipitation, pressure, relative humidity, specific humidity, temperature, wind.</dd></div>
+              <div><dt>Target</dt><dd>Forecast 20 daily multivariate rows from 2023-12-12 to 2023-12-31.</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#3a8f54" data-series="6,17,8,4,4,5,0,0,1,2,36,14,9,4,2,4,3,3,1,0,0,0,1,2,10,33,13,5,9,13,42,29,2,62,7,5,13,9,5,7,5,6,8,1,6,3,5,2,95,89,1,0,1,14" aria-label="Terra precipitation trend"></canvas>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="video-examples">
+      <div class="section-head">
+        <p class="eyebrow">Temporal Visual Evidence</p>
+        <h2>Video and Sensor Grounded Tasks</h2>
+        <p class="lead">Video segments are paired with synchronized numeric traces and task-specific question formats.</p>
+      </div>
+
+      <div class="sample-grid video-grid">
+        <article class="sample-card">
+          <div class="media-frame video-frame">
+            <video controls preload="metadata" poster="assets/posters/agibot.jpg" src="assets/videos/agibot_h264.mp4"></video>
+          </div>
+          <div class="sample-body">
+            <p class="dataset">AgiBot</p>
+            <h3>Robot anomaly-cause classification</h3>
+            <p class="sample-text">
+              Determine the anomaly category from a robot shelf-manipulation video, step sequence, and arm-position sensor traces.
+            </p>
+            <dl class="task-list">
+              <div><dt>Instruction</dt><dd>Place pink cans and orange sausage sets from the shelf into the shopping cart.</dd></div>
+              <div><dt>Options</dt><dd>A paused. B meaningless operation. C fall. D other.</dd></div>
+              <div><dt>Reference</dt><dd>D</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#d35244" data-series="0.00,0.01,0.03,0.08,0.12,0.11,0.09,0.10,0.13,0.08,0.02,-0.02,-0.04,-0.01,0.08,0.15,0.21,0.28,0.18,0.04" aria-label="AgiBot end-effector velocity sketch"></canvas>
+          </div>
+        </article>
+
+        <article class="sample-card">
+          <div class="media-frame video-frame">
+            <video controls preload="metadata" poster="assets/posters/covla.jpg" src="assets/videos/covla_h264.mp4"></video>
+          </div>
+          <div class="sample-body">
+            <p class="dataset">CoVLA</p>
+            <h3>Autonomous-driving braking reason</h3>
+            <p class="sample-text">
+              Infer why the ego vehicle suddenly braked from a dashcam segment and aligned vehicle state signals.
+            </p>
+            <dl class="task-list">
+              <div><dt>Question</dt><dd>Why did the ego vehicle brake during the segment?</dd></div>
+              <div><dt>Options</dt><dd>A leading vehicle decelerated. B ego vehicle was making a turn. C other reason.</dd></div>
+              <div><dt>Reference</dt><dd>B</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#2a7a78" data-series="12.7,12.5,12.0,11.4,10.7,9.9,9.1,8.3,7.5,6.7,5.9,5.1,4.3,3.5,2.7,2.0,1.4,0.8,0.3,0.0" aria-label="CoVLA ego speed trend"></canvas>
+          </div>
+        </article>
+
+        <article class="sample-card">
+          <div class="media-frame video-frame square-video">
+            <video controls preload="metadata" poster="assets/posters/cuhk_x_har.jpg" src="assets/videos/cuhk_x_har_h264.mp4"></video>
+          </div>
+          <div class="sample-body">
+            <p class="dataset">CUHK-X HAR</p>
+            <h3>Human action classification</h3>
+            <p class="sample-text">
+              Classify a human activity using a short video segment and wearable IMU streams from chest, arms, and legs.
+            </p>
+            <dl class="task-list">
+              <div><dt>Sample</dt><dd>cuhk_x_har_test_1813_6772023832</dd></div>
+              <div><dt>Question</dt><dd>Which action category ID best matches this segment?</dd></div>
+              <div><dt>Reference</dt><dd>35, Do_lunges</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#6f5fb7" data-series="-135,-39,112,236,-154,36,-150,228,-347,200,-701,-151,393,-87,65,-342,137,90,20" aria-label="CUHK-X gyroscope activity sketch"></canvas>
+          </div>
+        </article>
+
+        <article class="sample-card">
+          <div class="media-frame video-frame wide-video">
+            <video controls preload="metadata" poster="assets/posters/future_factories.jpg" src="assets/videos/future_factories_h264.mp4"></video>
+          </div>
+          <div class="sample-body">
+            <p class="dataset">Future Factories</p>
+            <h3>Industrial cycle defect detection</h3>
+            <p class="sample-text">
+              Judge whether a rocket assembly cycle proceeds normally or contains a missing-part anomaly.
+            </p>
+            <dl class="task-list">
+              <div><dt>Evidence</dt><dd>Stitched multi-camera video, cycle report text, gripper readings, and robot joint angles.</dd></div>
+              <div><dt>Options</dt><dd>A correct. B NoNose. C NoNose, NoBody2. D NoNose, NoBody2, NoBody1.</dd></div>
+              <div><dt>Reference</dt><dd>A</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#b7791f" data-series="11092,11136,11157,11154,11153,11198,11148,11122,11629,11163,11128,11183,11178,11193,11167" aria-label="Future Factories gripper potentiometer trend"></canvas>
+          </div>
+        </article>
+
+        <article class="sample-card">
+          <div class="media-frame video-frame">
+            <video controls preload="metadata" poster="assets/posters/holo_assist.jpg" src="assets/videos/holo_assist_h264.mp4"></video>
+          </div>
+          <div class="sample-body">
+            <p class="dataset">HoloAssist</p>
+            <h3>Egocentric procedural correctness</h3>
+            <p class="sample-text">
+              Decide whether all fine-grained steps inside a coarse-grained egocentric action are correct.
+            </p>
+            <dl class="task-list">
+              <div><dt>Action</dt><dd>The student changes the battery for the GoPro.</dd></div>
+              <div><dt>Options</dt><dd>A all fine-grained actions are correct. B at least one is incorrect.</dd></div>
+              <div><dt>Reference</dt><dd>A</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#3a8f54" data-series="0.05,0.06,-0.02,-0.03,0.03,0.01,-0.04,0.07,0.13,-0.01,-0.07,0.08,0.09,-0.05,-0.11,0.00,-0.05,0.03,0.07,-0.10" aria-label="HoloAssist gyroscope sketch"></canvas>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="data-sources">
+      <div class="section-head">
+        <p class="eyebrow">To Be Completed</p>
+        <h2>Data Sources</h2>
+        <p class="lead">Fill in the source, license, and citation fields below before release.</p>
+      </div>
+
+      <div class="source-grid">
+        <article class="source-entry">
+          <h3>Image-grounded subsets</h3>
+          <table>
+            <thead>
+              <tr><th>Subset</th><th>Source</th><th>License / Access</th><th>Citation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>MIMIC</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
+              <tr><td>PixelRec</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
+              <tr><td>S&amp;P 500</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
+              <tr><td>Terra</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="source-entry">
+          <h3>Video-grounded subsets</h3>
+          <table>
+            <thead>
+              <tr><th>Subset</th><th>Source</th><th>License / Access</th><th>Citation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>AgiBot</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
+              <tr><td>CoVLA</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
+              <tr><td>CUHK-X HAR</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
+              <tr><td>Future Factories</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
+              <tr><td>HoloAssist</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>MMTR Project Page</p>
+    <a href="#top">Back to top</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
