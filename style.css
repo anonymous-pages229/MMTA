@@ -258,7 +258,7 @@ nav {
 }
 
 .video-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .sample-card {
@@ -296,6 +296,8 @@ nav {
   object-fit: contain;
 }
 
+.image-grid .media-frame,
+.image-grid .terra-strip,
 .image-wide {
   aspect-ratio: 16 / 9;
 }
@@ -308,10 +310,17 @@ nav {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
-  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+  justify-items: stretch;
 }
 
-.xray-grid img {
+.image-grid .media-frame > img {
+  object-fit: cover;
+}
+
+.image-grid .xray-grid > img {
   object-fit: contain;
   background: #080b0c;
 }
@@ -319,14 +328,20 @@ nav {
 .terra-strip {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 1px;
-  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+  justify-items: stretch;
   background: var(--line);
 }
 
 .terra-strip figure {
   position: relative;
   margin: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background: #111615;
 }
