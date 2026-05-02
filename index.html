@@ -69,9 +69,9 @@
       </div>
       <div class="metric-grid" aria-label="Benchmark modalities">
         <div class="metric"><strong>4</strong><span>image-grounded domains</span></div>
-        <div class="metric"><strong>5</strong><span>video-grounded domains</span></div>
+        <div class="metric"><strong>4</strong><span>video-grounded domains</span></div>
         <div class="metric"><strong>2</strong><span>task families: forecasting and classification</span></div>
-        <div class="metric"><strong>9</strong><span>representative examples below</span></div>
+        <div class="metric"><strong>8</strong><span>representative examples below</span></div>
       </div>
     </section>
 
@@ -144,14 +144,11 @@
           </div>
         </article>
 
-        <article class="sample-card sample-card-wide">
+        <article class="sample-card">
           <div class="terra-strip" aria-label="Terra geospatial evidence images">
             <figure><img src="assets/images/terra_satellite.png" alt="Terra satellite image for 10N 166E" /><figcaption>Satellite</figcaption></figure>
             <figure><img src="assets/images/terra_relief.png" alt="Terra relief image for 10N 166E" /><figcaption>Relief</figcaption></figure>
-            <figure><img src="assets/images/terra_mask.png" alt="Terra land water mask for 10N 166E" /><figcaption>Mask</figcaption></figure>
             <figure><img src="assets/images/terra_vgg.png" alt="Terra vertical gravity gradient image for 10N 166E" /><figcaption>VGG</figcaption></figure>
-            <figure><img src="assets/images/terra_faa.png" alt="Terra free air anomaly image for 10N 166E" /><figcaption>FAA</figcaption></figure>
-            <figure><img src="assets/images/terra_ma.png" alt="Terra magnetic anomaly image for 10N 166E" /><figcaption>MA</figcaption></figure>
             <figure><img src="assets/images/terra_geoid.png" alt="Terra geoid image for 10N 166E" /><figcaption>Geoid</figcaption></figure>
           </div>
           <div class="sample-body">
@@ -219,26 +216,7 @@
         </article>
 
         <article class="sample-card">
-          <div class="media-frame video-frame square-video">
-            <video controls preload="metadata" poster="assets/posters/cuhk_x_har.jpg" src="assets/videos/cuhk_x_har_h264.mp4"></video>
-          </div>
-          <div class="sample-body">
-            <p class="dataset">CUHK-X HAR</p>
-            <h3>Human action classification</h3>
-            <p class="sample-text">
-              Classify a human activity using a short video segment and wearable IMU streams from chest, arms, and legs.
-            </p>
-            <dl class="task-list">
-              <div><dt>Sample</dt><dd>cuhk_x_har_test_1813_6772023832</dd></div>
-              <div><dt>Question</dt><dd>Which action category ID best matches this segment?</dd></div>
-              <div><dt>Reference</dt><dd>35, Do_lunges</dd></div>
-            </dl>
-            <canvas class="sparkline" data-color="#6f5fb7" data-series="-135,-39,112,236,-154,36,-150,228,-347,200,-701,-151,393,-87,65,-342,137,90,20" aria-label="CUHK-X gyroscope activity sketch"></canvas>
-          </div>
-        </article>
-
-        <article class="sample-card">
-          <div class="media-frame video-frame wide-video">
+          <div class="media-frame video-frame">
             <video controls preload="metadata" poster="assets/posters/future_factories.jpg" src="assets/videos/future_factories_h264.mp4"></video>
           </div>
           <div class="sample-body">
@@ -309,7 +287,6 @@
             <tbody>
               <tr><td>AgiBot</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
               <tr><td>CoVLA</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
-              <tr><td>CUHK-X HAR</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
               <tr><td>Future Factories</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
               <tr><td>HoloAssist</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
             </tbody>
