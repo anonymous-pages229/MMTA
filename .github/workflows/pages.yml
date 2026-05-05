@@ -1,0 +1,77 @@
+name: Deploy MMTR site
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+          test -d assets
+
+      - name: Smoke test static site
+        run: |
+          python3 -m http.server 8000 >/tmp/mmtr-site.log 2>&1 &
+          server_pid=$!
+          trap 'kill $server_pid' EXIT
+
+          for _ in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/index.html >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+          curl -fsS http://127.0.0.1:8000/index.html | grep -q 'MMTR'
+
+  deploy:
+    needs: validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare site bundle
+        run: |
+          mkdir -p site
+          rsync -a --delete --exclude '.git' --exclude '.github' ./ site/
+          touch site/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
