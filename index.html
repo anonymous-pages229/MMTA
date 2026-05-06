@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MMTR - Multimodal Temporal Reasoning Benchmark</title>
-  <meta name="description" content="MMTR: Benchmarking Multimodal Temporal Reasoning with Visual Evidence" />
+  <title>MMTA - Multimodal Temporal Analysis Benchmark</title>
+  <meta name="description" content="MMTA: Benchmarking multimodal temporal analysis with vision, text, and time series." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar" id="top">
-    <a class="brand" href="#top">MMTR</a>
+    <a class="brand" href="#top">MMTA</a>
     <nav aria-label="Main navigation">
       <a href="#abstract">Abstract</a>
       <a href="#image-examples">Image Evidence</a>
@@ -22,7 +22,7 @@
     <section class="hero">
       <div class="hero-copy">
         <p class="venue">NeurIPS Submission</p>
-        <h1>MMTR: Benchmarking Multimodal Temporal Reasoning with Visual Evidence</h1>
+        <h1>MMTA: Benchmarking Multimodal Temporal Analysis with Vision, Text, and Time Series</h1>
         <p class="authors">Anonymous Authors</p>
         <div class="link-row" aria-label="Project links">
           <a href="#">Paper</a>
@@ -52,26 +52,29 @@
         <p class="eyebrow">Paper Abstract</p>
         <h2>Abstract</h2>
       </div>
-      <div class="abstract-placeholder" aria-label="Abstract placeholder">
-        <p>To be added.</p>
+      <div class="abstract-copy" aria-label="Abstract">
+        <p>
+          Time-series analysis underpins decision making across domains such as economics, meteorology, and public health, and the field has recently shifted from unimodal time series toward multimodal formulations that pair temporal signals with textual context. Most existing work, however, either omits the visual modality or renders it only as a chart-style visualization of the same signal, rather than treating it as an independent evidence source. Real-world tasks instead depend on three non-redundant evidence sources at once: vision encodes physical and semantic context, text supplies events and instructions, and time series carries high-resolution quantitative dynamics.
+        </p>
+        <p>
+          To address this gap, <strong>MMTA</strong> (<strong>M</strong>ulti<strong>m</strong>odal <strong>T</strong>emporal <strong>A</strong>nalysis) is introduced as a real-world benchmark that places vision, text, and time series side by side. MMTA spans nine domains -- robotics, autonomous driving, human action, manufacturing, AR assistance, healthcare, recommendation, finance, and climate -- exported under <em>video+TS</em> and <em>image+TS</em> layouts, with a 3,524-sample test split covering both classification and forecasting. A systematic evaluation of eight MLLMs on MMTA exposes a shared failure mode: serializing time series as text yields excessively long token sequences and prevents alignment with co-occurring video frames. We then introduce <strong>OmniTS</strong>, a working example of how an Omni-LLM can be extended to handle long time series, which demonstrates higher efficiency on the time-series modality, competitive task performance, and tighter fusion across vision, text, and time series.
+        </p>
       </div>
     </section>
 
     <section class="section section-tint" id="overview">
       <div class="section-head">
         <p class="eyebrow">Benchmark Scope</p>
-        <h2>Multimodal Temporal Reasoning With Visual Evidence</h2>
+        <h2>Multimodal Temporal Analysis With Vision, Text, and Time Series</h2>
         <p class="lead">
-          MMTR collects tasks where temporal signals must be interpreted together with visual evidence:
-          static images, radiology images, financial charts, geospatial maps, egocentric videos,
-          robot videos, driving videos, and industrial multi-camera recordings.
+          MMTA collects tasks where vision, text, and time series must be interpreted together across nine real-world domains.
         </p>
       </div>
       <div class="metric-grid" aria-label="Benchmark modalities">
         <div class="metric"><strong>4</strong><span>image-grounded domains</span></div>
-        <div class="metric"><strong>4</strong><span>video-grounded domains</span></div>
+        <div class="metric"><strong>5</strong><span>video-grounded domains</span></div>
         <div class="metric"><strong>2</strong><span>task families: forecasting and classification</span></div>
-        <div class="metric"><strong>8</strong><span>representative examples below</span></div>
+        <div class="metric"><strong>9</strong><span>representative examples below</span></div>
       </div>
     </section>
 
@@ -145,7 +148,7 @@
         </article>
 
         <article class="sample-card">
-          <div class="terra-strip" aria-label="Terra geospatial evidence images">
+          <div class="media-frame terra-strip" aria-label="Terra geospatial evidence images">
             <figure><img src="assets/images/terra_satellite.png" alt="Terra satellite image for 10N 166E" /><figcaption>Satellite</figcaption></figure>
             <figure><img src="assets/images/terra_relief.png" alt="Terra relief image for 10N 166E" /><figcaption>Relief</figcaption></figure>
             <figure><img src="assets/images/terra_vgg.png" alt="Terra vertical gravity gradient image for 10N 166E" /><figcaption>VGG</figcaption></figure>
@@ -217,6 +220,25 @@
 
         <article class="sample-card">
           <div class="media-frame video-frame">
+            <video controls preload="metadata" poster="assets/posters/cuhk_x_har.jpg" src="assets/videos/cuhk_x_har_h264.mp4"></video>
+          </div>
+          <div class="sample-body">
+            <p class="dataset">CUHK-X HAR</p>
+            <h3>Human action classification</h3>
+            <p class="sample-text">
+              Classify a human activity using a short video segment and wearable IMU streams from chest, arms, and legs.
+            </p>
+            <dl class="task-list">
+              <div><dt>Sample</dt><dd>cuhk_x_har_test_1813_6772023832</dd></div>
+              <div><dt>Question</dt><dd>Which action category ID best matches this segment?</dd></div>
+              <div><dt>Reference</dt><dd>35, Do_lunges</dd></div>
+            </dl>
+            <canvas class="sparkline" data-color="#6f5fb7" data-series="-135,-39,112,236,-154,36,-150,228,-347,200,-701,-151,393,-87,65,-342,137,90,20" aria-label="CUHK-X gyroscope activity sketch"></canvas>
+          </div>
+        </article>
+
+        <article class="sample-card">
+          <div class="media-frame video-frame">
             <video controls preload="metadata" poster="assets/posters/future_factories.jpg" src="assets/videos/future_factories_h264.mp4"></video>
           </div>
           <div class="sample-body">
@@ -259,45 +281,36 @@
       <div class="section-head">
         <p class="eyebrow">To Be Completed</p>
         <h2>Data Sources</h2>
-        <p class="lead">Fill in the source, license, and citation fields below before release.</p>
+        <p class="lead">Source links for each subset.</p>
       </div>
 
       <div class="source-grid">
         <article class="source-entry">
           <h3>Image-grounded subsets</h3>
-          <table>
-            <thead>
-              <tr><th>Subset</th><th>Source</th><th>License / Access</th><th>Citation</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>MIMIC</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
-              <tr><td>PixelRec</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
-              <tr><td>S&amp;P 500</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
-              <tr><td>Terra</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
-            </tbody>
-          </table>
+          <ul class="source-list">
+            <li><strong>MIMIC</strong> <a href="https://physionet.org/content/mimiciv/3.1/">physionet.org/content/mimiciv/3.1/</a></li>
+            <li><strong>PixelRec</strong> <a href="https://github.com/westlake-repl/PixelRec">github.com/westlake-repl/PixelRec</a></li>
+            <li><strong>S&amp;P 500</strong> <a href="https://huggingface.co/datasets/Wenyan0110/Multimodal-Dataset-Image_Text_Table_TimeSeries-for-Financial-Time-Series-Forecasting">huggingface.co/datasets/Wenyan0110/Multimodal-Dataset-Image_Text_Table_TimeSeries-for-Financial-Time-Series-Forecasting</a></li>
+            <li><strong>Terra</strong> <a href="https://github.com/CityMind-Lab/NeurIPS24-Terra?tab=readme-ov-file">github.com/CityMind-Lab/NeurIPS24-Terra</a></li>
+          </ul>
         </article>
 
         <article class="source-entry">
           <h3>Video-grounded subsets</h3>
-          <table>
-            <thead>
-              <tr><th>Subset</th><th>Source</th><th>License / Access</th><th>Citation</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>AgiBot</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
-              <tr><td>CoVLA</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
-              <tr><td>Future Factories</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
-              <tr><td>HoloAssist</td><td>[TBD]</td><td>[TBD]</td><td>[TBD]</td></tr>
-            </tbody>
-          </table>
+          <ul class="source-list">
+            <li><strong>AgiBot</strong> <a href="https://huggingface.co/datasets/agibot-world/AgiBotWorld2026">huggingface.co/datasets/agibot-world/AgiBotWorld2026</a></li>
+            <li><strong>CoVLA</strong> <a href="https://huggingface.co/datasets/turing-motors/CoVLA-Dataset">huggingface.co/datasets/turing-motors/CoVLA-Dataset</a></li>
+            <li><strong>CUHK-X HAR</strong> <a href="https://github.com/openaiotlab/CUHK-X">github.com/openaiotlab/CUHK-X</a></li>
+            <li><strong>Future Factories</strong> <a href="https://www.kaggle.com/datasets/ramyharik/ff-2024-08-13-multi-modal-dataset-33">kaggle.com/datasets/ramyharik/ff-2024-08-13-multi-modal-dataset-33</a></li>
+            <li><strong>HoloAssist</strong> <a href="https://holoassist.github.io/">holoassist.github.io</a></li>
+          </ul>
         </article>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>MMTR Project Page</p>
+    <p>MMTA Project Page</p>
     <a href="#top">Back to top</a>
   </footer>
 
