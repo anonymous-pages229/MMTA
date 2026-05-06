@@ -307,25 +307,23 @@ nav {
 }
 
 .media-frame {
+  flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
   background: #111615;
 }
 
-.media-frame img {
+.media-frame:not(.xray-grid):not(.terra-strip) > img,
+.media-frame > video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .media-frame video {
-  width: 100%;
-  height: 100%;
   background: #0d1213;
-  object-fit: contain;
-}
-
-.cuhk-frame video {
-  width: 82%;
-  margin: 0 auto;
 }
 
 .image-grid .media-frame,
@@ -338,12 +336,14 @@ nav {
   aspect-ratio: 16 / 9;
 }
 
+.cuhk-frame video {
+  object-fit: cover;
+}
+
 .xray-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
-  width: 100%;
-  height: 100%;
   align-items: stretch;
   justify-items: stretch;
 }
@@ -353,6 +353,10 @@ nav {
 }
 
 .image-grid .xray-grid > img {
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   background: #080b0c;
 }
@@ -362,8 +366,6 @@ nav {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 1px;
-  width: 100%;
-  height: 100%;
   align-items: stretch;
   justify-items: stretch;
   background: var(--line);
@@ -372,13 +374,15 @@ nav {
 .terra-strip figure {
   position: relative;
   margin: 0;
-  width: 100%;
-  height: 100%;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
   background: #111615;
 }
 
 .terra-strip img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
