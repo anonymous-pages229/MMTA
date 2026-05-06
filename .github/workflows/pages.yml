@@ -1,4 +1,4 @@
-name: Deploy MMTR site
+name: Deploy MMTA site
 
 on:
   push:
@@ -30,18 +30,9 @@ jobs:
 
       - name: Smoke test static site
         run: |
-          python3 -m http.server 8000 >/tmp/mmtr-site.log 2>&1 &
-          server_pid=$!
-          trap 'kill $server_pid' EXIT
-
-          for _ in $(seq 1 30); do
-            if curl -fsS http://127.0.0.1:8000/index.html >/dev/null; then
-              break
-            fi
-            sleep 1
-          done
-
-          curl -fsS http://127.0.0.1:8000/index.html | grep -q 'MMTR'
+          grep -q 'MMTA' index.html
+          grep -q 'CUHK-X HAR' index.html
+          grep -q 'physionet.org/content/mimiciv/3.1' index.html
 
   deploy:
     needs: validate
