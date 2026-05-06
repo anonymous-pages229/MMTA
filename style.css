@@ -323,6 +323,11 @@ nav {
   object-fit: contain;
 }
 
+.cuhk-frame video {
+  width: 82%;
+  margin: 0 auto;
+}
+
 .image-grid .media-frame,
 .image-grid .terra-strip,
 .image-wide {
